@@ -1,12 +1,14 @@
 import Task from "./task";
 import Project from "./project";
-
+import './style.css';
 const projectdialog = document.querySelector('.projects__dialog');
 const taskdialog = document.querySelector('.tasks__dialog');
 const projectform = document.querySelector('.projects__form');
 const taskform = document.querySelector('.tasks__form')
-const projectbtn = document.querySelector('#project__new');
+const projectbtn = document.querySelector('#projects__new');
 const taskbtn = document.querySelector('#tasks__new');
+const taskcancel = document.querySelector('.taskCancel');
+const projectcancel = document.querySelector('.projectCancel');
 const projecttitle = document.querySelector('.tasks__projectname').firstElementChild;
 const projectlist = document.querySelector('.projects__items');
 const tasklist = document.querySelector('.tasks__lists');
@@ -51,7 +53,7 @@ function updateProjects(){
     projectlist.innerHTML = '';
 
     for (let i = 0; i < projects.length; i++){
-        projectlist.appendChild(projects[i].getProjectElement);
+        projectlist.appendChild(projects[i].getProjectElement());
     }
 }
 
@@ -61,7 +63,7 @@ function createProject(name, deletable){
     const title = document.createElement('p');
     const deleteBtn = document.createElement('i');
 
-    div.classList.add('projects__items');
+    div.classList.add('projects__item');
     title.textContent = name;
     deleteBtn.classList.add('ri-delete-bin-7-fill');
 
@@ -69,14 +71,20 @@ function createProject(name, deletable){
     deletable && div.appendChild(deleteBtn);
     const newProject = new Project(name, div);
 
-    deleteBtn.addEventListener('click', () => {
+    deleteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        console.log('clicked');
         newProject.onDelete()
-        projects = projects.filter(project => project.getId() !== newProject.getId);
+        console.log(projects);
+        projects = projects.filter(project => project.getId() !== newProject.getId());
+        console.log(projects);
         updateProjects();
         updateTasks();
     });
     div.addEventListener('click', () => {
+        console.log('clicked2');
         currentProject = newProject;
+        projecttitle.textContent = currentProject.getName();
         updateProjects();
         updateTasks();
     });
@@ -85,6 +93,7 @@ function createProject(name, deletable){
 }
 
 function createTask(project, name, desc, date, priority){
+    if (currentProject == undefined) return;
     const div = document.createElement('div');
     const p = document.createElement('p');
     div.classList.add('tasks__item');
@@ -103,8 +112,39 @@ function createTask(project, name, desc, date, priority){
     p.textContent = desc;
     div.appendChild(p);
     const newTask = new Task(div, name, desc, date, priority);
-    deleteBtn.addEventListener('click', () => project.deleteTask(newTask.getId()));
+    deleteBtn.addEventListener('click', () => {
+        project.deleteTask(newTask.getId())
+        updateTasks();
+    });
     project.addTask(newTask);
 }
 
 
+projectbtn.addEventListener('click', () => projectdialog.showModal());
+projectcancel.addEventListener('click', (e) => {
+    e.preventDefault();
+    projectdialog.close();
+});
+projectform.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = new FormData(projectform);
+    const name = form.get('projectTitle');
+    createProject(name, true);
+    projectdialog.close();
+})
+taskbtn.addEventListener('click', () => taskdialog.showModal());
+taskcancel.addEventListener('click', (e) => {
+    e.preventDefault();
+    taskdialog.close();
+});
+
+taskform.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = new FormData(taskform);
+    const name = form.get('taskTitle');
+    const desc = form.get('taskDesc');
+    const date = form.get('taskDate');
+    const priority = form.get('taskPriority');
+    createTask(currentProject, name, desc, date, priority);
+    taskdialog.close();
+})

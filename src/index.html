@@ -25,14 +25,17 @@
             </div>
             <dialog class="projects__dialog">
                 <form action="" class="projects__form">
-                    <input type="text" name="form__title" id="form__title" class="form__title"  placeholder="Enter your project name">
-                    <button type="submit" id="form__submit">CREATE</button>
+                    <input type="text" name="projectTitle" id="projectTitle" class="projectTitle"  placeholder="Enter your project name">
+                  <div>
+                        <button type="submit" class="projectCreate">CREATE</button>
+                        <button  class="projectCancel">CANCEL</button>
+                  </div>
                 </form>
             </dialog>
         </div>
         <div class="tasks">
             <div class="tasks__projectname">
-                <p>Default</p>
+                <p></p>
                 <button id="tasks__new"><i class="ri-add-circle-fill"></i></button>
             </div>
             <div class="tasks__lists">
@@ -44,11 +47,11 @@
                         <textarea name="taskDesc" id="taskDesc" class="taskDesc" placeholder="Enter description" rows="5" cols="50" required></textarea>
                        <div>
                             <label for="" class="taskDateTitle">Due date:</label>
-                            <input type="date" name="" id="" required>
+                            <input type="date" name="taskDate" id="taskDate" required>
                        </div>
                         <div>
                             <label for="" class="taskPriorityTitle">Priority:</label>
-                            <select name="priority" id="priority-select" required>
+                            <select name="taskPriority" id="priority-select" required>
                                 <option value="">--Please choose an option--</option>
                                 <option value="high">High</option>
                                 <option value="medium">Medium</option>
@@ -56,7 +59,7 @@
                             </select> 
                         </div>
                        <div>
-                            <button class="taskCreate">CANCEL</button>
+                            <button class="taskCancel">CANCEL</button>
                             <button type="submit" class="taskCreate">CREATE</button>
                        </div>
                 </form>
