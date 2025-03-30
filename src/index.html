@@ -21,16 +21,47 @@
                 <button id="projects__new"><i class="ri-add-circle-fill"></i></button>
             </div>
             <div class="projects__items">
-                <button class="projects__item">
-                    <p>Default</p>
-                </button>
-                <button class="projects__item">
-                    <p>Important</p>
-                    <i class="ri-delete-bin-7-fill"></i>
-                </button>
+               
             </div>
+            <dialog class="projects__dialog">
+                <form action="" class="projects__form">
+                    <input type="text" name="form__title" id="form__title" class="form__title"  placeholder="Enter your project name">
+                    <button type="submit" id="form__submit">CREATE</button>
+                </form>
+            </dialog>
         </div>
-        <div class="tasks"></div>
+        <div class="tasks">
+            <div class="tasks__projectname">
+                <p>Default</p>
+                <button id="tasks__new"><i class="ri-add-circle-fill"></i></button>
+            </div>
+            <div class="tasks__lists">
+            </div>
+            <dialog class="tasks__dialog">
+                <form action="" class="tasks__form">
+                        <h2>Create Task</h2>
+                        <input type="text" name="taskTitle" id="taskTitle" class="taskTitle" placeholder="Enter task title" required>
+                        <textarea name="taskDesc" id="taskDesc" class="taskDesc" placeholder="Enter description" rows="5" cols="50" required></textarea>
+                       <div>
+                            <label for="" class="taskDateTitle">Due date:</label>
+                            <input type="date" name="" id="" required>
+                       </div>
+                        <div>
+                            <label for="" class="taskPriorityTitle">Priority:</label>
+                            <select name="priority" id="priority-select" required>
+                                <option value="">--Please choose an option--</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="normal">Normal</option>
+                            </select> 
+                        </div>
+                       <div>
+                            <button class="taskCreate">CANCEL</button>
+                            <button type="submit" class="taskCreate">CREATE</button>
+                       </div>
+                </form>
+            </dialog>
+        </div>
     </main>
 </body>
 </html>
