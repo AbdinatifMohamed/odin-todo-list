@@ -1,6 +1,6 @@
-import Task from "./task";
-import Project from "./project";
-import './style.css';
+import Task from "./task.js";
+import Project from "./project.js";
+// import './style.css';
 const projectdialog = document.querySelector('.projects__dialog');
 const taskdialog = document.querySelector('.tasks__dialog');
 const projectform = document.querySelector('.projects__form');
@@ -43,7 +43,11 @@ let projects = [];
 
 
 function updateTasks(){
-    if (currentProject == undefined) return;
+    if (currentProject == undefined) {
+        tasklist.innerHTML = '';
+        projecttitle.textContent = '';
+        return;
+    }
     tasklist.innerHTML = '';
     for (let i = 0; i < currentProject.getTasks().length; i++){
         tasklist.appendChild(currentProject.getTasks()[i].getTaskElement());
@@ -78,6 +82,7 @@ function createProject(name, deletable){
         console.log(projects);
         projects = projects.filter(project => project.getId() !== newProject.getId());
         console.log(projects);
+        currentProject = undefined;
         updateProjects();
         updateTasks();
     });
@@ -104,6 +109,7 @@ function createTask(project, name, desc, date, priority){
     const completeBtn = document.createElement('i');
     deleteBtn.classList.add('ri-delete-bin-7-fill');
     completeBtn.classList.add('ri-checkbox-circle-fill')
+    h4.textContent = name;
     thirddiv.appendChild(deleteBtn);
     thirddiv.appendChild(completeBtn);
     seconddiv.appendChild(h4);
@@ -117,6 +123,7 @@ function createTask(project, name, desc, date, priority){
         updateTasks();
     });
     project.addTask(newTask);
+    updateTasks();
 }
 
 

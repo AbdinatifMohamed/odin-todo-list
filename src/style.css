@@ -146,8 +146,9 @@ main {
 
 
 .tasks__item > p {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    flex: 1;
+    word-wrap: break-word;
+    overflow: hidden;;
 }
 
 
