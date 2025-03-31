@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin Todo-List</title>
+    <link rel="stylesheet" href="609a232ab53e413e38d2.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<script defer src="main.js"></script></head>
+<body>
+    <header>
+        <h1>Todododo</h1>
+    </header>
+    <main>
+        <div class="projects">
+            <div class="projects__topbar">
+                <h3>Projects</h3>
+                <button id="projects__new"><i class="ri-add-circle-fill"></i></button>
+            </div>
+            <div class="projects__items">
+               
+            </div>
+            <dialog class="projects__dialog">
+                <form action="" class="projects__form">
+                    <input type="text" name="projectTitle" id="projectTitle" class="projectTitle"  placeholder="Enter your project name">
+                  <div>
+                        <button type="submit" class="projectCreate">CREATE</button>
+                        <button  class="projectCancel">CANCEL</button>
+                  </div>
+                </form>
+            </dialog>
+        </div>
+        <div class="tasks">
+            <div class="tasks__projectname">
+                <p></p>
+                <button id="tasks__new"><i class="ri-add-circle-fill"></i></button>
+            </div>
+            <div class="tasks__lists">
+            </div>
+            <dialog class="tasks__dialog">
+                <form action="" class="tasks__form">
+                        <h2>Create Task</h2>
+                        <input type="text" name="taskTitle" id="taskTitle" class="taskTitle" placeholder="Enter task title" required>
+                        <textarea name="taskDesc" id="taskDesc" class="taskDesc" placeholder="Enter description" rows="5" cols="50" required></textarea>
+                       <div>
+                            <label for="" class="taskDateTitle">Due date:</label>
+                            <input type="date" name="taskDate" id="taskDate" required>
+                       </div>
+                        <div>
+                            <label for="" class="taskPriorityTitle">Priority:</label>
+                            <select name="taskPriority" id="priority-select" required>
+                                <option value="">--Please choose an option--</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="normal">Normal</option>
+                            </select> 
+                        </div>
+                       <div>
+                            <button class="taskCancel">CANCEL</button>
+                            <button type="submit" class="taskCreate">CREATE</button>
+                       </div>
+                </form>
+            </dialog>
+        </div>
+    </main>
+</body>
+</html>
