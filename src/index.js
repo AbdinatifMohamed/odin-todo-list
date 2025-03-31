@@ -1,6 +1,6 @@
 import Task from "./task.js";
 import Project from "./project.js";
-// import './style.css';
+import './style.css';
 const projectdialog = document.querySelector('.projects__dialog');
 const taskdialog = document.querySelector('.tasks__dialog');
 const projectform = document.querySelector('.projects__form');
@@ -121,7 +121,22 @@ function createTask(project, name, desc, date, priority){
     deleteBtn.addEventListener('click', () => {
         project.deleteTask(newTask.getId())
         updateTasks();
-    });
+    }); 
+    completeBtn.addEventListener('click', () => {
+        console.log('reached');
+        div.classList.toggle('completed');
+    })
+    switch (priority) {
+        case 'high':
+            div.classList.add('high');
+            break;
+        case 'medium':
+            div.classList.add('medium');
+            break;
+        default:
+            break;
+    }
+   
     project.addTask(newTask);
     updateTasks();
 }
